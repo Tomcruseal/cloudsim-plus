@@ -3,7 +3,7 @@
 
 package org.cloudbus.cloudsim.examples;
 
-import org.cloudbus.cloudsim.allocationpolicies.VmAlocationPolicySimple;
+import org.cloudbus.cloudsim.allocationpolicies.VmAllocationPolicySimple;
 import org.cloudbus.cloudsim.brokers.DatacenterBroker;
 import org.cloudbus.cloudsim.brokers.DatacenterBrokerSimple;
 import org.cloudbus.cloudsim.cloudlets.Cloudlet;
@@ -22,18 +22,19 @@ import org.cloudbus.cloudsim.utilizationmodels.UtilizationModel;
 import org.cloudbus.cloudsim.utilizationmodels.UtilizationModelFull;
 import org.cloudbus.cloudsim.vms.Vm;
 import org.cloudbus.cloudsim.vms.VmSimple;
-import org.cloudsimplus.buildes.tables.CloudletsTableBuilder;
+import org.cloudsimplus.builders.tables.CloudletsTableBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClousSimExampleX{
+public class CloudSimExampleX{
     private List<Cloudlet> cloudletList;
     private List<Vm> vmList;
 
-    public static void Main(Stirng[], args) {new CloudSimExampleX();}
+    public static void main(String[] args) { new CloudSimExampleX(); }
 
-    public CloudsimExampleX(){
+
+    public CloudSimExampleX(){
         System.out.println("starting simulation" + getClass().getSimpleName());
         //getClass(), getSimpleName()
 
@@ -50,8 +51,8 @@ public class ClousSimExampleX{
         long size = 10000;
         int ram = 1024;
         long bw = 1000;
-        
-        
+
+
         Vm vm1 = new VmSimple(++vmid, mips, pesNumber)
             .setRam(ram).setBw(bw).setSize(size).setCloudletScheduler(new CloudletSchedulerTimeShared());
 
@@ -70,25 +71,25 @@ public class ClousSimExampleX{
         cloudletList = new ArrayList<>();
 
         int clid = 0;
-        long length - 250000;
+        long length = 250000;
         long fileSize = 300;
         long outputSize = 300;
         UtilizationModel utilizationModel = new UtilizationModelFull();
 
-        Cloudlet cloudlet1 = 
-            new CloudletSimple(++id, length, pesNumber)
+        Cloudlet cloudlet1 =
+            new CloudletSimple(++clid, length, pesNumber)
                 .setFileSize(fileSize)
                 .setOutputSize(outputSize)
                 .setUtilizationModel(utilizationModel);
 
-        Cloudlet cloudlet2 = 
-            new CloudletSimple(++id, length, pesNumber)
+        Cloudlet cloudlet2 =
+            new CloudletSimple(++clid, length, pesNumber)
                 .setFileSize(fileSize)
                 .setOutputSize(outputSize)
                 .setUtilizationModel(utilizationModel);
 
-        Cloudlet cloudlet3 = 
-            new CloudletSimple(++id, length, pesNumber)
+        Cloudlet cloudlet3 =
+            new CloudletSimple(++clid, length, pesNumber)
                 .setFileSize(fileSize)
                 .setOutputSize(outputSize)
                 .setUtilizationModel(utilizationModel);
@@ -105,7 +106,7 @@ public class ClousSimExampleX{
 
         simulation.start();
 
-        List<Cloudlet> newList = nroker.getCloudletFinishedList();
+        List<Cloudlet> newList = broker.getCloudletFinishedList();
         new CloudletsTableBuilder(newList).build();
         System.out.println("simulation" + getClass().getSimpleName() + "finished");
     }
